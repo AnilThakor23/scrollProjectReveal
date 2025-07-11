@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import vertexShader from '/shaders/vertex.glsl'
 import fragmentshader from '/shaders/fragment.glsl'
-import GUI from 'lil-gui';
+// import GUI from 'lil-gui';
 import gsap from 'gsap';
 import Lenis from 'lenis'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -9,7 +9,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 gsap.registerPlugin(ScrollTrigger);
-// const gui = new GUI()
+
 
 
 const images = document.querySelectorAll(".projectImg")
@@ -21,7 +21,7 @@ const lenis = new Lenis({
   wheelMultiplier: 0.5 // default is 1.0
 });
 lenis.on('scroll', updatePositions());
-// Use requestAnimationFrame to continuously update the scroll
+
 function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
@@ -37,15 +37,15 @@ const scene = new THREE.Scene();
 // const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
 // camera.position.set(0, 0, 5); 
 const aspect = window.innerWidth / window.innerHeight;
-const frustumSize = 2; // world units visible vertically
+const frustumSize = 2;
 
 const camera = new THREE.OrthographicCamera(
-  -frustumSize * aspect / 2,  // left
-  frustumSize * aspect / 2,  // right
-  frustumSize / 2,           // top
-  -frustumSize / 2,           // bottom
-  0.1,                        // near
-  10                          // far
+  -frustumSize * aspect / 2, 
+  frustumSize * aspect / 2,  
+  frustumSize / 2,          
+  -frustumSize / 2,          
+  0.1,                        
+  10                          
 );
 camera.position.z = 1;
 
@@ -119,7 +119,6 @@ const clock = new THREE.Clock();
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
-  // material.uniforms.uTime.value = clock.getElapsedTime();
   updatePositions();
   composer.render(); 
   // renderer.render(scene, camera);
@@ -144,13 +143,6 @@ function updatePositions() {
     plane.mesh.position.set(x, y, 0);
   })
 }
-const settings = {
-  // scroll: material.uniforms.uScroll.value
-};
-
-// gui.add(settings, 'scroll', -1.6, 1.6).onChange((val) => {
-//   material.uniforms.uScroll.value = val;
-// });
 
 images.forEach((img,index)=>{
 
